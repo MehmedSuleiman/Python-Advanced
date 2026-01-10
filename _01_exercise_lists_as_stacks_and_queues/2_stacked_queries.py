@@ -17,13 +17,13 @@ for i in range(n_lines):
     if command[0] == '1':
         number = command[1]
         stack.append(int(number))
-    elif command[0] == '2':
-        if stack:
+    elif stack:
+        if command[0] == '2':
             stack.pop()
-    elif command[0] == '3':
-        print(max(stack))
-    elif command[0] == '4':
-        print(min(stack))
+        elif command[0] == '3':
+            print(max(stack))
+        elif command[0] == '4':
+            print(min(stack))
     else:
         pass
 
