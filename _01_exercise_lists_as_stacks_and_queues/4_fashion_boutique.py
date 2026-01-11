@@ -21,4 +21,19 @@
 #•	The capacity will be an integer in the range [0,20]
 #•	None of the integers from the box will be greater than the value of the capacity
 
+clothes = list(map(int, input().split()))
+rack_capacity = int(input())
 
+current_capacity = rack_capacity
+racks_used = 1
+
+while clothes:
+    cloth = clothes.pop()
+
+    if cloth <= current_capacity:
+        current_capacity -= cloth
+    else:
+        racks_used += 1
+        current_capacity = rack_capacity - cloth
+
+print(racks_used)
