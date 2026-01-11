@@ -19,3 +19,29 @@
 #•	1 ≤ amount of petrol, distance ≤ 1000000000
 #•	You will always have at least one point from where the truck will be able to complete the circle
 
+n = int(input())
+pumps = []
+
+for _ in range(n):
+    amount, distance = map(int, input().split())
+    pumps.append((amount, distance))
+
+total_tank = 0
+current_tank = 0
+start_index = 0
+
+for i in range(n):
+    petrol, dist = pumps[i]
+    diff = petrol - dist
+
+    total_tank += diff
+    current_tank += diff
+
+    # If we cannot reach the next pump
+    if current_tank < 0:
+        # Start from the next pump
+        start_index = i + 1
+        current_tank = 0
+
+# total_tank >= 0 is guaranteed by the problem
+print(start_index)

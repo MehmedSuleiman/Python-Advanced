@@ -14,3 +14,25 @@
 #•	1 ≤ lens ≤ 1000, where the lens is the length of the sequence
 #•	Each character of the sequence will be one of {, }, (, ), [, ]
 
+from collections import deque
+
+sequence = input().strip()
+
+stack = deque()
+pairs = {')': '(', '}': '{', ']': '['}
+
+balanced = True
+
+for ch in sequence:
+    if ch in "({[":
+        stack.append(ch)
+    else:
+        if not stack or stack.pop() != pairs[ch]:
+            balanced = False
+            break
+
+if balanced and not stack:
+    print("YES")
+else:
+    print("NO")
+
