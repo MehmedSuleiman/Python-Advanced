@@ -24,4 +24,40 @@
 #Constraints
 #•	All given numbers will be valid integers in the range [-100 … 100].
 
+from collections import deque
 
+chocolate = list(int(x) for x in input().split(", "))
+cups = deque(int(x) for x in input().split(", "))
+
+milkshakes = 0
+
+while chocolate and cups  and milkshakes < 5:
+    last = chocolate[-1]
+    first = cups[0]
+    if last <= 0:
+        chocolate.pop()
+        continue
+    if first <= 0:
+        cups.popleft()
+        continue
+    if last == first:
+        milkshakes += 1
+        cups.popleft()
+        chocolate.pop()
+    else:
+        removed = cups.popleft()
+        cups.append(removed)
+        chocolate[-1] -= 5
+
+if milkshakes == 5:
+    print("Great! You made all the chocolate milkshakes needed!")
+else:
+    print("Not enough milkshakes.")
+if chocolate:
+    print("Chocolate:", ", ".join(str(x) for x in chocolate))
+else:
+    print("Chocolate: empty")
+if cups:
+    print("Milk:", ", ".join(str(x) for x in cups))
+else:
+    print("Milk: empty")
