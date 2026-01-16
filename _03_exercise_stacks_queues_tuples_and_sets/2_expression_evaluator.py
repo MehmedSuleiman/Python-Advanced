@@ -19,3 +19,30 @@
 #•	Operators and numbers will always be valid
 #•	There will be no case of division by zero
 #•	There might be negative numbers in the string
+
+from math import floor
+
+expression = input().split()
+
+numbers = []
+
+for token in expression:
+    if token.lstrip("-").isdigit()
+        numbers.append(int(token))
+    else:
+        op = token
+        result = numbers[0]
+
+        for num in numbers[1:]:
+            if op == "+":
+                result += num
+            elif op == "-":
+                result -= num
+            elif op == "*":
+                result *= num
+            elif op == "/":
+                result = floor(result / num)
+
+        numbers = [result]
+
+print(numbers[0])
