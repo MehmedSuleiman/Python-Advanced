@@ -17,3 +17,53 @@
 ##•	The total number of eggs collected
 #Constraints
 #•	There will NOT be two or more paths consisting of the same total amount of eggs.
+
+n = int(input())
+
+matrix = []
+bunny = None
+
+
+for i in range(n):
+    matrix.append(list(input().split()))
+    for j in range(n):
+        if matrix[i][j] == 'B':
+            bunny = (i, j)
+
+
+directions ={
+    "up": (-1, 0),
+    "down": (1, 0),
+    "left": (0, -1),
+    "right": (0, 1),
+}
+
+best_direction = None
+best_eggs = float('-inf')
+best_path = []
+
+for name, (dr, dc) in directions.items():
+    r, c = bunny
+    path = []
+    eggs = 0
+    r += dr
+    c += dc
+    while 0 <= r < n and 0 <= c < n:
+        cell = matrix[r][c]
+        if cell == 'X':
+            break
+        eggs += int(cell)
+        path.append([r, c])
+        r += dr
+        c += dc
+    if eggs > best_eggs:
+        best_eggs = eggs
+        best_direction = name
+        best_path = path
+
+
+print(best_direction)
+for p in best_path:
+    print(p)
+print(best_eggs)
+
